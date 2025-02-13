@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-int main(int argc, char *argv[]) {
-    for (int i = 1; i < argc; i++) {
-        long address = strtol(argv[i], NULL, 10);
-        printf("0x%012lX\n", masked);
+int main(int argc, char **argv) {
+    for (int i = 1; i < argc; ++i) {
+        uint64_t address = strtoull(argv[i], NULL, 10);
+        address &= 0xFFFFFFFFFFFFULL;
+        printf("0x%012lX\n", (unsigned long)address);
     }
     return 0;
 }
